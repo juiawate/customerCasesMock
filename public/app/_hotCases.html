@@ -1,0 +1,18 @@
+<table class="table table-striped">
+    <thead>
+        <th>#</th>
+        <th>Customer name</th>
+        <th>Date</th>
+        <th>Text</th>
+        <th>Old cases</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in hotCases">
+            <td>{{$index+1}}</td>
+            <td>{{c.custId}}</td>
+            <td>{{c.date | date}}</td>
+            <td>{{c.text}}</td>
+            <td><a href="#" ng-click="showOldCases(c.custId)">Old Cases</a></td>
+        </tr>
+    </tbody>
+</table>

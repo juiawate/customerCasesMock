@@ -1,0 +1,16 @@
+<table class="table table-striped">
+    <thead>
+        <th>#</th>
+        <th>Customer name</th>
+        <th>Date</th>
+        <th>Text</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in oldCases">
+            <td>{{$index+1}}</td>
+            <td>{{c.custId}}</td>
+            <td>{{c.date | date}}</td>
+            <td>{{c.text}}</td>
+        </tr>
+    </tbody>
+</table>
