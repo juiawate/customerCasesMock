@@ -12,3 +12,8 @@ input, select, textarea, button, .button {
     margin: 0.35em 0.5em;
     color: #8e8e8e;
 }
+
+.container {
+    padding: 1px !important;
+    margin: 1em;
+}
