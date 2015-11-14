@@ -6,7 +6,7 @@ var Cases = require('./casesModel');
 
 router.get('/getCap', function(req, res, next) {
     Cases.findAll({
-        where: { status: 'cap' }
+        where: { type: 'cap' }
         /*include: [{
             model: Customers,
             where: {id: sequelize.col('CustomerCases.custId')}
@@ -17,19 +17,19 @@ router.get('/getCap', function(req, res, next) {
 });
 
 router.get('/getHot', function (req, res) {
-    Cases.findAll({where: { status: 'hot' }}).then(function (data) {
+    Cases.findAll({where: { type: 'hot' }}).then(function (data) {
         res.status(200).json({hotCases: data});
     });
 });
 
 router.get('/getOldCases', function (req, res) {
-    Cases.findAll({where: { status: 'done' }}).then(function (data) {
+    Cases.findAll({where: { type: 'done' }}).then(function (data) {
         res.status(200).json({oldCases: data});
     });
 });
 
 router.get('/getOldCases/:id', function (req, res) {
-    Cases.findAll({where: { status: 'done' , custId: req.params.id}}).then(function (data) {
+    Cases.findAll({where: { type: 'done' , custId: req.params.id}}).then(function (data) {
         res.status(200).json({oldCases: data});
     });
 });

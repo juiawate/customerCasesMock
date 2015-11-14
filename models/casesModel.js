@@ -22,32 +22,37 @@ var Cases = sequelize.define('CustomerCases', {
     text: {
         type: Sequelize.TEXT('long')
     },
+    type: {
+        type: Sequelize.ENUM,
+        values: ['cap', 'hot','done']
+    },
     status: {
         type: Sequelize.ENUM,
-        values: ['cap', 'hot', 'done']
+        values: ['pending', 'resolved'],
+        defaultValue: 'pending'
     }
 },
     {
     indexes: [
         {
             name: 'hotCases_Idx',
-            fields: ['custId', 'status'],
+            fields: ['custId', 'type'],
             where: {
                 status: 'hot'
             }
         },
         {
             name: 'capCases_Idx',
-            fields: ['custId', 'status'],
+            fields: ['custId', 'type'],
             where: {
                 status: 'cap'
             }
         },
         {
             name: 'oldCases_Idx',
-            fields: ['custId', 'status'],
+            fields: ['custId', 'type'],
             where: {
-                status: 'old'
+                status: 'done'
             }
         }
     ]
@@ -55,12 +60,12 @@ var Cases = sequelize.define('CustomerCases', {
 
 //Cases.sync({force: true});
 
-sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust1', '2013-08-30 19:05:00', 'some data', 'cap', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
-sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust2', '2013-08-30 19:05:00', 'some data', 'hot', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
-sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust3', '2013-08-30 19:05:00', 'some data', 'cap', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
-sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust4', '2013-08-30 19:05:00', 'some data', 'hot', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
-sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust1', '2013-08-30 19:05:00', 'some data', 'done', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
-sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust2', '2013-08-30 19:05:00', 'some data', 'done', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
+sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `type`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust1', '2013-08-30 19:05:00', 'some data', 'cap', 'pending', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
+sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `type`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust2', '2013-08-30 19:05:00', 'some data', 'hot', 'pending', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
+sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `type`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust3', '2013-08-30 19:05:00', 'some data', 'cap', 'pending', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
+sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `type`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust4', '2013-08-30 19:05:00', 'some data', 'hot', 'pending', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
+sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `type`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust1', '2013-08-30 19:05:00', 'some data', 'done', 'pending', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
+sequelize.query("INSERT INTO `test`.`customerCases` (`custId`, `date`, `text`, `type`, `status`, `createdAt`, `updatedAt`) VALUES ('Cust2', '2013-08-30 19:05:00', 'some data', 'done', 'pending', '2013-08-30 19:05:00', '2013-08-30 19:05:00');");
 
 
 module.exports = Cases;
